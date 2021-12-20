@@ -1,6 +1,6 @@
-package com.example.ZupSimula.Simulacao.dto;
+package com.example.ZupSimula.dto;
 
-import com.example.ZupSimula.Enum.Risco;
+import com.example.ZupSimula.enums.Risco;
 
 public class SimulacaoDTO {
     private String email;
