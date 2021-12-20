@@ -28,6 +28,10 @@ public class SimulacaoService {
         }
         return new SimulacaoSaidaDTO(valorTotal, valoAplicado, valorDoLucro);
 
+    }
 
+    public SimulacaoSaidaDTO realizarSimulacao(SimulacaoDTO simulacaoDTO){
+        adicionarSimulacaoNaLista(simulacaoDTO);
+        return calcularSimulacao(simulacaoDTO);
     }
 }
