@@ -1,4 +1,4 @@
-package com.example.ZupSimula.Enum;
+package com.example.ZupSimula.enums;
 
 public enum Risco {
     ALTO(0.025), MEDIO(0.015), BAIXO(0.005);
