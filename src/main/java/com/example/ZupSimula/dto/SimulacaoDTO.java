@@ -3,6 +3,7 @@ package com.example.ZupSimula.dto;
 import com.example.ZupSimula.enums.Risco;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 
 public class SimulacaoDTO {
     @Email(message = "Email inválido")
@@ -10,6 +11,7 @@ public class SimulacaoDTO {
     private String nome;
     private String cpf;
     private double valorInvestimento;
+    @Min(value = 2,message = "Periodo minimo de aplicação é de 2 meses ")
     private int periodoDeAplicacao;
     private Risco risco;
 
