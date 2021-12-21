@@ -14,6 +14,7 @@ public class SimulacaoService {
     private List<SimulacaoDTO> mailing = new ArrayList<>();
 
     public void adicionarSimulacaoNaLista (SimulacaoDTO simulacaoDTO){
+        verificarValorERisco(simulacaoDTO);
         mailing.add(simulacaoDTO);
     }
 
@@ -33,10 +34,14 @@ public class SimulacaoService {
     }
 
     public SimulacaoSaidaDTO realizarSimulacao(SimulacaoDTO simulacaoDTO){
+
+        adicionarSimulacaoNaLista(simulacaoDTO);
+        return calcularSimulacao(simulacaoDTO);
+    }
+
+    private void verificarValorERisco(SimulacaoDTO simulacaoDTO){
         if(simulacaoDTO.getRisco() == Risco.ALTO && simulacaoDTO.getValorInvestimento()< 5000){
             throw new ValorBaixoRiscoAltoException("Valor muito baixo para Risco alto");
         }
-        adicionarSimulacaoNaLista(simulacaoDTO);
-        return calcularSimulacao(simulacaoDTO);
     }
 }
