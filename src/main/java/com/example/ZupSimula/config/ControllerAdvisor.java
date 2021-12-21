@@ -1,5 +1,6 @@
 package com.example.ZupSimula.config;
 
+import com.example.ZupSimula.exceptions.ValorBaixoRiscoAltoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -23,5 +24,11 @@ public class ControllerAdvisor {
             erros.add(erroDeValidacao);
         }
         return erros;
+    }
+
+    @ExceptionHandler(ValorBaixoRiscoAltoException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public MensagemDeErro manipularExcecaoDeRiscoAltoValoBaixo(ValorBaixoRiscoAltoException exception){
+        return new MensagemDeErro(exception.getMessage());
     }
 }
