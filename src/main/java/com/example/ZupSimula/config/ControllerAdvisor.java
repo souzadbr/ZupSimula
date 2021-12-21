@@ -36,7 +36,10 @@ public class ControllerAdvisor {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public MensagemDeErro manipularExcepetionDeEnumInvalido(HttpMessageNotReadableException exception){
-        return  new MensagemDeErro("Risco não encontrado");
+        if(exception.getLocalizedMessage().contains("br.com.ZupSimula.enuns.Risco")){
+            return  new MensagemDeErro("Risco não encontrado");
+        }
+        return new MensagemDeErro(exception.getLocalizedMessage());
     }
 
 }
