@@ -2,6 +2,8 @@ package com.example.ZupSimula.simulacao;
 
 import com.example.ZupSimula.dto.SimulacaoDTO;
 import com.example.ZupSimula.dto.SimulacaoSaidaDTO;
+import com.example.ZupSimula.enums.Risco;
+import com.example.ZupSimula.exceptions.ValorBaixoRiscoAltoException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,6 +33,9 @@ public class SimulacaoService {
     }
 
     public SimulacaoSaidaDTO realizarSimulacao(SimulacaoDTO simulacaoDTO){
+        if(simulacaoDTO.getRisco() == Risco.ALTO && simulacaoDTO.getValorInvestimento()< 5000){
+            throw new ValorBaixoRiscoAltoException("Valor muito baixo para Risco alto");
+        }
         adicionarSimulacaoNaLista(simulacaoDTO);
         return calcularSimulacao(simulacaoDTO);
     }
