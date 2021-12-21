@@ -2,6 +2,7 @@ package com.example.ZupSimula.config;
 
 import com.example.ZupSimula.exceptions.ValorBaixoRiscoAltoException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,4 +32,11 @@ public class ControllerAdvisor {
     public MensagemDeErro manipularExcecaoDeRiscoAltoValoBaixo(ValorBaixoRiscoAltoException exception){
         return new MensagemDeErro(exception.getMessage());
     }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public MensagemDeErro manipularExcepetionDeEnumInvalido(HttpMessageNotReadableException exception){
+        return  new MensagemDeErro("Risco não encontrado");
+    }
+
 }
